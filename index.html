@@ -152,6 +152,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020-1-14-指针数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/">指针数组</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2020-01-14T14:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题：如何存储-访问一个字符串的集合"><a href="#问题：如何存储-访问一个字符串的集合" class="headerlink" title="问题：如何存储/访问一个字符串的集合"></a>问题：如何存储/访问一个字符串的集合</h1><ul>
+<li>操作：存储+访问</li>
+<li>对象：字符串的集合</li>
+</ul>
+<hr>
+<h3 id="二维字符数组"><a href="#二维字符数组" class="headerlink" title="二维字符数组"></a>二维字符数组</h3><pre><code>1. 缺点：空间利用率低，存在大量空字符</code></pre><hr>
+<h1 id="最佳方案：指针数组"><a href="#最佳方案：指针数组" class="headerlink" title="最佳方案：指针数组"></a>最佳方案：指针数组</h1><ul>
+<li>初始化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *string[] &#x3D; &#123;&quot;america&quot;,&quot;england&quot;,&quot;china&quot;&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3>string中的每一个元素（string[0],string[1],string[2]）都是一个指针，且指向每一个字符串。</li>
+</ul>
+<hr>
+<ul>
+<li>访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(int i &#x3D; 0; i &lt; 5 ; i++)&#123;</span><br><span class="line">    printf(&quot;%s\n&quot;,string[i]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ul>
+<li><p>指向数组的指针：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int (*p)[5];</span><br><span class="line">&#x2F;&#x2F; p是一个指针，指向一个有5个元素的数组</span><br><span class="line">&#x2F;&#x2F; 结合性： p先和*结合成为一个指针，后和[]结合。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指针数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char *p[5];</span><br><span class="line">&#x2F;&#x2F; p[5]是一个数组，里面的每一个元素都是一个指针变量（char *）</span><br><span class="line">&#x2F;&#x2F; 结合性： p先和[]结合形成数组，后和*结合。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="应用：排序（按照字母顺序）"><a href="#应用：排序（按照字母顺序）" class="headerlink" title="应用：排序（按照字母顺序）"></a>应用：排序（按照字母顺序）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原理：交换指针数组中的字符串指针</span><br><span class="line">void sort_string(char *ptr[], int n)&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    char *temp &#x3D; NULL;&#x2F;&#x2F;用于交换时作为临时变量</span><br><span class="line">    for (i &#x3D; 0 ; i &lt; n-1; i++ )&#123;</span><br><span class="line">        for(j &#x3D; i+1 ; j &lt; n ; j++)&#123;</span><br><span class="line">            if(strcmp(ptr[j), ptr[i]) &lt; 0)&#123;</span><br><span class="line">                temp &#x3D; ptr[i];</span><br><span class="line">                ptr[i] &#x3D; ptr[j];</span><br><span class="line">                ptr[j] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++ , 指针 , 字符串 - tags - 这是一个标签</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -380,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++ , 指针 , 字符串 - tags - 这是一个标签</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

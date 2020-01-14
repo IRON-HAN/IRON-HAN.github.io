@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>指针数组 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="问题：如何存储&#x2F;访问一个字符串的集合 操作：存储+访问 对象：字符串的集合   二维字符数组1. 缺点：空间利用率低，存在大量空字符 最佳方案：指针数组 初始化1char *string[] &#x3D; &amp;#123;&quot;america&quot;,&quot;england&quot;,&quot;china&quot;&amp;#125;; 解释：string中的每一个元素（string[0]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2020/01/14/hello-world/index.html">
+<meta property="og:title" content="指针数组">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="问题：如何存储&#x2F;访问一个字符串的集合 操作：存储+访问 对象：字符串的集合   二维字符数组1. 缺点：空间利用率低，存在大量空字符 最佳方案：指针数组 初始化1char *string[] &#x3D; &amp;#123;&quot;america&quot;,&quot;england&quot;,&quot;china&quot;&amp;#125;; 解释：string中的每一个元素（string[0]">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-14T11:07:59.402Z">
-<meta property="article:modified_time" content="2020-01-14T11:07:59.402Z">
+<meta property="article:published_time" content="2020-01-14T14:01:47.000Z">
+<meta property="article:modified_time" content="2020-01-14T14:21:32.395Z">
 <meta property="article:author" content="潘 承研">
+<meta property="article:tag" content="C++ , 指针 , 字符串 - tags - 这是一个标签">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -154,40 +155,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020-1-14-指针数组" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      指针数组
     </h1>
   
 
         
-        <a href="/2020/01/14/hello-world/" class="archive-article-date">
-  	<time datetime="2020-01-14T11:07:59.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+        <a href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2020-01-14T14:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="问题：如何存储-访问一个字符串的集合"><a href="#问题：如何存储-访问一个字符串的集合" class="headerlink" title="问题：如何存储/访问一个字符串的集合"></a>问题：如何存储/访问一个字符串的集合</h1><ul>
+<li>操作：存储+访问</li>
+<li>对象：字符串的集合</li>
+</ul>
+<hr>
+<h3 id="二维字符数组"><a href="#二维字符数组" class="headerlink" title="二维字符数组"></a>二维字符数组</h3><pre><code>1. 缺点：空间利用率低，存在大量空字符</code></pre><hr>
+<h1 id="最佳方案：指针数组"><a href="#最佳方案：指针数组" class="headerlink" title="最佳方案：指针数组"></a>最佳方案：指针数组</h1><ul>
+<li>初始化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *string[] &#x3D; &#123;&quot;america&quot;,&quot;england&quot;,&quot;china&quot;&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3>string中的每一个元素（string[0],string[1],string[2]）都是一个指针，且指向每一个字符串。</li>
+</ul>
+<hr>
+<ul>
+<li>访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(int i &#x3D; 0; i &lt; 5 ; i++)&#123;</span><br><span class="line">    printf(&quot;%s\n&quot;,string[i]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ul>
+<li><p>指向数组的指针：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int (*p)[5];</span><br><span class="line">&#x2F;&#x2F; p是一个指针，指向一个有5个元素的数组</span><br><span class="line">&#x2F;&#x2F; 结合性： p先和*结合成为一个指针，后和[]结合。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指针数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char *p[5];</span><br><span class="line">&#x2F;&#x2F; p[5]是一个数组，里面的每一个元素都是一个指针变量（char *）</span><br><span class="line">&#x2F;&#x2F; 结合性： p先和[]结合形成数组，后和*结合。</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+</li>
+</ul>
+<hr>
+<h3 id="应用：排序（按照字母顺序）"><a href="#应用：排序（按照字母顺序）" class="headerlink" title="应用：排序（按照字母顺序）"></a>应用：排序（按照字母顺序）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原理：交换指针数组中的字符串指针</span><br><span class="line">void sort_string(char *ptr[], int n)&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    char *temp &#x3D; NULL;&#x2F;&#x2F;用于交换时作为临时变量</span><br><span class="line">    for (i &#x3D; 0 ; i &lt; n-1; i++ )&#123;</span><br><span class="line">        for(j &#x3D; i+1 ; j &lt; n ; j++)&#123;</span><br><span class="line">            if(strcmp(ptr[j), ptr[i]) &lt; 0)&#123;</span><br><span class="line">                temp &#x3D; ptr[i];</span><br><span class="line">                ptr[i] &#x3D; ptr[j];</span><br><span class="line">                ptr[j] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -216,6 +231,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++ , 指针 , 字符串 - tags - 这是一个标签</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -266,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/14/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,15 +306,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          我的第一篇博客
-        
-      </div>
-    </a>
   
+    <a href="/2020/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
