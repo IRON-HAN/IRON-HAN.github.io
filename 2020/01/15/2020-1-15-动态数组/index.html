@@ -16,7 +16,7 @@
 <meta property="og:description" content="动态数组">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-15T07:29:10.000Z">
-<meta property="article:modified_time" content="2020-01-15T08:08:02.563Z">
+<meta property="article:modified_time" content="2020-01-21T11:56:51.473Z">
 <meta property="article:author" content="潘 承研">
 <meta property="article:tag" content="C++ ，数组，">
 <meta name="twitter:card" content="summary">
@@ -181,13 +181,11 @@
 <li>长度动态（可变）</li>
 <li>内存空间连续</li>
 </ol>
-<h2 id="实现及举例"><a href="#实现及举例" class="headerlink" title="实现及举例"></a>实现及举例</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct&#123;</span><br><span class="line">    int *array;&#x2F;&#x2F; 动态数组的首地址</span><br><span class="line">    int len;&#x2F;&#x2F; 数组的长度</span><br><span class="line">&#125;DArray;</span><br></pre></td></tr></table></figure>
+<h2 id="实现及举例"><a href="#实现及举例" class="headerlink" title="实现及举例"></a>实现及举例</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="==初始化=="></a>==初始化==</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct&#123;</span><br><span class="line">    int *array;&#x2F;&#x2F; 动态数组的首地址</span><br><span class="line">    int len;&#x2F;&#x2F; 数组的长度</span><br><span class="line">&#125;DArray;</span><br></pre></td></tr></table></figure>
 
 <h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><ul>
 <li>Example：创建一个长度为n的动态数组，读入数据后将其长度增长1倍，继续读入新的数据。输出长度增长前后的所有元素。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 结构体</span><br><span class="line">typedef struct&#123;</span><br><span class="line">    int *array;</span><br><span class="line">    int len;</span><br><span class="line">&#125; DArray;</span><br><span class="line">&#x2F;&#x2F; 函数列表</span><br><span class="line">DArray create(int);</span><br><span class="line">void grow(DArray *,int);</span><br><span class="line">void print(DArray *);</span><br><span class="line">void release(DArray *);</span><br><span class="line">&#x2F;&#x2F; 主函数</span><br><span class="line">int main()&#123;</span><br><span class="line">    int n;</span><br><span class="line">    DArray a;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    a&#x3D;create(n);</span><br><span class="line">    print(&amp;a);</span><br><span class="line">    grow(&amp;a,n*2);</span><br><span class="line">    print(&amp;a);</span><br><span class="line">    release(&amp;a);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">DArray create(int n)&#123;</span><br><span class="line">    DArray a;</span><br><span class="line">    int i;</span><br><span class="line">    a.array &#x3D; (int *)malloc(sizeof(int) * n);</span><br><span class="line"></span><br><span class="line">    if(a.array !&#x3D; NULL) &#123;</span><br><span class="line">        a.len &#x3D; n;</span><br><span class="line">        for (i &#x3D; 0; i &lt; a.len;i++)</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;a.array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; grow函数的实现思路：</span><br><span class="line">&#x2F;&#x2F; 1. 重新申请</span><br><span class="line">&#x2F;&#x2F; 2. 逐个赋值</span><br><span class="line">&#x2F;&#x2F; 3. free原来的</span><br><span class="line">void grow(DArray *a_ptr,int n)&#123;</span><br><span class="line">    int *p;</span><br><span class="line">    int i;</span><br><span class="line">    p &#x3D; (int *)malloc(sizeof(int) * n);</span><br><span class="line">    if(p&#x3D;&#x3D;NULL)</span><br><span class="line">        return;</span><br><span class="line">    else &#123;</span><br><span class="line">        for (i &#x3D; 0; i &lt; a_ptr-&gt;len;i++)</span><br><span class="line">            p[i] &#x3D; a_ptr-&gt;array[i];</span><br><span class="line">        for (i &#x3D; a_ptr-&gt;len; i &lt; n;i++)</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;p[i]);</span><br><span class="line">        free(a_ptr-&gt;array);</span><br><span class="line">        a_ptr-&gt;array &#x3D; p;</span><br><span class="line">        a_ptr-&gt;len &#x3D; n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void print(DArray *p)&#123;</span><br><span class="line">    int i;</span><br><span class="line">    for (i &#x3D; 0; i &lt; p-&gt;len;i++)</span><br><span class="line">        printf(&quot;%d&quot;, p-&gt;array[i]);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line">void release(DArray *p)&#123;</span><br><span class="line">    free(p-&gt;array);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
+$$\int_{-\infty}^{-\infty} e^<br>{-x^2} = \sqrt{\pi}$$</li>
 </ul>
 
       
@@ -447,6 +445,46 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">C++  语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++   语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C ,zju</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C++  数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C 变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ 枚举</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++ 类 对象 构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C char* char []</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ 输入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ string vector string初始化 string赋值</a>
               </li>
             
             <div class="clearfix"></div>

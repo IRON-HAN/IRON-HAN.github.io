@@ -152,29 +152,143 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2020-1-15-数据结构简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-2-4-字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/15/2020-1-15-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%80%E4%BB%8B/">2020-1-15-数据结构简介</a>
+      <a class="article-title" href="/2020/02/04/2020-2-4-%E5%AD%97%E7%AC%A6%E4%B8%B2/">2020-2-4-字符串</a>
     </h1>
   
 
         
-        <a href="/2020/01/15/2020-1-15-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  	<time datetime="2020-01-15T12:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+        <a href="/2020/02/04/2020-2-4-%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2020-02-04T08:18:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="三种关系"><a href="#三种关系" class="headerlink" title="三种关系"></a>三种关系</h2>
+        <ol>
+<li>一个字符串”123”究竟表示什么<br>在C语言中,字符串常量的本质表示其实是一个地址<br>char *s = “123”;</li>
+</ol>
+<p><strong>意义: s = “123” = 某个地址</strong></p>
+<ol start="2">
+<li>字符数组：<br>char str[10] = “hello”；<br>str = &amp;str[0] , 也等于 “hello”的首地址。<br>所以printf(“%s”,str); 本质也是 printf(“%s”, 地址”);</li>
+</ol>
+<p><strong>C语言中,操作字符串是通过它在内存中的存储单元的首地址进行的。</strong></p>
+<ol start="3">
+<li>char *s  与 char  a[ ];<br>a代表字符串的首地址，而s这个指针也保存字符串的首地址，即第一个字符的地址，这个地址单元中的数据是一个字符，这也与 s 所指向的 char 一致。<br>因此可以 s = a;<br>但是不能 a = s;</li>
+</ol>
+<p><strong>C语言中,(数组名)可以赋值给(指针)表示地址，但是(指针)却不能赋给给(数组名)，它是一个常量类型，所以不能修改。</strong></p>
+<p>char * 与 char a[ ] 的本质区别：</p>
+<pre><code>当定义 char a[10]时，编译器会给数组分配十个单元，每个单元的数据类型为字符。
+
+而定义 char *s 时，这是个指针变量，只占四个字节，用来保存一个地址。</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char *a [ ] &#x3D; &#123;&quot;China&quot;,&quot;French&quot;,&quot;America&quot;,&quot;German&quot;&#125;;</span><br><span class="line">    printf(&quot;%p %p %p %p\n&quot;,a[0],a[1],a[2],a[3]); &#x2F;&#x2F;数组元素中保存的地址</span><br><span class="line">    printf(&quot;%p %p %p %p\n&quot;,&amp;a[0],&amp;a[1],&amp;a[2],&amp;a[3]);&#x2F;&#x2F;数组元素单元本身的地址</span><br><span class="line">&#x2F;*</span><br><span class="line">字符串常量的本质是地址，a 数组中的元素为char * 指针，指针变量占四个字节，那么四个元素就是16个字节了</span><br><span class="line">注意这四个地址是不连续的，它是编译器为&quot;China&quot;,&quot;French&quot;,&quot;America&quot;,&quot;German&quot; 分配的内存空间的地址， 所以，四个地址没有关联。</span><br><span class="line">*&#x2F;</span><br><span class="line">    char **s &#x3D; a;</span><br><span class="line">&#x2F;*</span><br><span class="line">为什么能把 a赋给s,因为数组名a代表数组元素内存单元的首地址，即 a &#x3D; &amp;a[0] &#x3D; 0012FF38;</span><br><span class="line"></span><br><span class="line">而 0x12FF38即 a[0]中保存的又是 00422FB8 ,这个地址， 00422FB8为字符串&quot;China&quot;的首地址。</span><br><span class="line"></span><br><span class="line">即 *s &#x3D; 00422FB8 &#x3D; &quot;China&quot;;</span><br><span class="line">*&#x2F;</span><br><span class="line">    printf(&quot;%s&quot;,*s);</span><br><span class="line">    printf(&quot;%s&quot;,a[0]);</span><br><span class="line">    printf(&quot;%s&quot;,*a);</span><br><span class="line"></span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>const char *ptr=(char const *ptr)<ol>
+<li>不能做的事: 以(*ptr)即间接访问的方式修改ptr的值</li>
+<li>能做的事:<ol>
+<li>修改ptr指向的字符串</li>
+<li>通过直接访问字符数组的方式修改值</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="5">
+<li>char * const ptr;<ol>
+<li>不能修改ptr指针的指向</li>
+<li>可以以(*ptr)修改该指针指向的内容。</li>
+</ol>
+</li>
+</ol>
+<ol start="6">
+<li>char** a<ol>
+<li>在 char<em>* a 中，a 是一个指针，这个指针（a）指向一块内存地址，该内存地址中存储的是 char</em> 类型的数据。指针的加减运算在这里的体现为：a + 1 表示地址加8字节（在32位系统中，地址加4字节）。</li>
+<li>char* 也是一个指针，用 <em>a 表示，这个指针（</em>a）指向一块内存地址，该内存地址中存储的是 char 类型的数据。指针的加减运算在这里的体现为：(*a) + 1 表示地址加1字节。</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C char* char []</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/04/2020-2-4-%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%80%E4%BB%8B/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-1-27-输入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/27/2020-1-27-%E8%BE%93%E5%85%A5/">2020-1-27-输入</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/27/2020-1-27-%E8%BE%93%E5%85%A5/" class="archive-article-date">
+  	<time datetime="2020-01-27T12:50:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="输入函数"><a href="#输入函数" class="headerlink" title="输入函数"></a>输入函数</h1>
+        
+          <a class="article-more-a" href="/2020/01/27/2020-1-27-%E8%BE%93%E5%85%A5/#more">more >></a>
         
       
 
@@ -188,7 +302,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++ 输入</a>
         		</li>
       		
 		</ul>
@@ -198,7 +312,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/27/2020-1-27-%E8%BE%93%E5%85%A5/">展开全文 >></a>
         </p>
       
 
@@ -228,29 +342,29 @@
 
 
   
-    <article id="post-2020-1-15-单向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-1-27-string" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/15/2020-1-15-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">2020-1-15-单向链表</a>
+      <a class="article-title" href="/2020/01/27/2020-1-27-string/">2020-1-27-string</a>
     </h1>
   
 
         
-        <a href="/2020/01/15/2020-1-15-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-01-15T10:13:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+        <a href="/2020/01/27/2020-1-27-string/" class="archive-article-date">
+  	<time datetime="2020-01-27T12:01:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h1>
+        <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1>
         
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/27/2020-1-27-string/#more">more >></a>
         
       
 
@@ -264,7 +378,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C , 数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++ string vector string初始化 string赋值</a>
         		</li>
       		
 		</ul>
@@ -274,7 +388,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/27/2020-1-27-string/">展开全文 >></a>
         </p>
       
 
@@ -304,29 +418,29 @@
 
 
   
-    <article id="post-2020-1-15-动态数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-1-26-类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/15/2020-1-15-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/">2020/1/15-动态数组</a>
+      <a class="article-title" href="/2020/01/26/2020-1-26-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">2020-1-26-类和对象</a>
     </h1>
   
 
         
-        <a href="/2020/01/15/2020-1-15-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/" class="archive-article-date">
-  	<time datetime="2020-01-15T07:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+        <a href="/2020/01/26/2020-1-26-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-01-26T14:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h1>
+        <h1 id="类和对象基本概念"><a href="#类和对象基本概念" class="headerlink" title="类和对象基本概念"></a>类和对象基本概念</h1>
         
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/26/2020-1-26-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/#more">more >></a>
         
       
 
@@ -340,7 +454,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++ ，数组，</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++ 类 对象 构造函数</a>
         		</li>
       		
 		</ul>
@@ -350,7 +464,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/26/2020-1-26-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
         </p>
       
 
@@ -380,29 +494,29 @@
 
 
   
-    <article id="post-2020-1-15-结构体" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-1-25-枚举" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/15/2020-1-15-%E7%BB%93%E6%9E%84%E4%BD%93/">2020-1-15-结构体</a>
+      <a class="article-title" href="/2020/01/25/2020-1-25-%E6%9E%9A%E4%B8%BE/">2020-1-25-枚举</a>
     </h1>
   
 
         
-        <a href="/2020/01/15/2020-1-15-%E7%BB%93%E6%9E%84%E4%BD%93/" class="archive-article-date">
-  	<time datetime="2020-01-15T01:33:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+        <a href="/2020/01/25/2020-1-25-%E6%9E%9A%E4%B8%BE/" class="archive-article-date">
+  	<time datetime="2020-01-25T11:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="tp1-结构体所占内存"><a href="#tp1-结构体所占内存" class="headerlink" title="tp1:结构体所占内存"></a>tp1:结构体所占内存</h2>
+        <h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2>
         
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E7%BB%93%E6%9E%84%E4%BD%93/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/25/2020-1-25-%E6%9E%9A%E4%B8%BE/#more">more >></a>
         
       
 
@@ -416,7 +530,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C++ ， 结构体 ，共用体</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++ 枚举</a>
         		</li>
       		
 		</ul>
@@ -426,7 +540,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/15/2020-1-15-%E7%BB%93%E6%9E%84%E4%BD%93/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/25/2020-1-25-%E6%9E%9A%E4%B8%BE/">展开全文 >></a>
         </p>
       
 
@@ -456,31 +570,30 @@
 
 
   
-    <article id="post-2020-1-14-指针数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-1-24-变量的本质" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/">指针数组</a>
+      <a class="article-title" href="/2020/01/24/2020-1-24-%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/">2020-1-24-变量的本质</a>
     </h1>
   
 
         
-        <a href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/" class="archive-article-date">
-  	<time datetime="2020-01-14T14:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+        <a href="/2020/01/24/2020-1-24-%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="archive-article-date">
+  	<time datetime="2020-01-24T07:42:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="问题：如何存储-访问一个字符串的集合"><a href="#问题：如何存储-访问一个字符串的集合" class="headerlink" title="问题：如何存储/访问一个字符串的集合"></a>问题：如何存储/访问一个字符串的集合</h1><ul>
-<li>操作：存储+访问</li>
-<li>对象：字符串的集合
+        <ul>
+<li>变量三要素(名称、大小、作用域-&gt;变量的生命周期)<h2 id="TP1-变量的本质"><a href="#TP1-变量的本质" class="headerlink" title="TP1: 变量的本质"></a>TP1: 变量的本质</h2>
         
-          <a class="article-more-a" href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/24/2020-1-24-%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/#more">more >></a>
         
       
 
@@ -494,7 +607,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C++ , 指针 , 字符串</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C 变量</a>
         		</li>
       		
 		</ul>
@@ -504,7 +617,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/2020-1-14-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/24/2020-1-24-%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/">展开全文 >></a>
         </p>
       
 
@@ -534,91 +647,30 @@
 
 
   
-    <article id="post-我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2020-1-24-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
+      <a class="article-title" href="/2020/01/24/2020-1-24-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">2020-1-24-数据类型</a>
     </h1>
   
 
         
-        <a href="/2020/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-01-14T11:21:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+        <a href="/2020/01/24/2020-1-24-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-01-24T06:31:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+        <ul>
+<li>数据类型的==本质== : 固定大小内存块的名称<h2 id="TP1-数组"><a href="#TP1-数组" class="headerlink" title="TP1: 数组"></a>TP1: 数组</h2>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/14/hello-world/" class="archive-article-date">
-  	<time datetime="2020-01-14T11:07:59.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        
-          <a class="article-more-a" href="/2020/01/14/hello-world/#more">more >></a>
+          <a class="article-more-a" href="/2020/01/24/2020-1-24-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more">more >></a>
         
       
 
@@ -627,11 +679,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C++  数据类型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/24/2020-1-24-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
@@ -661,6 +724,238 @@
 
 
   
+    <article id="post-2020-1-23-const-用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/23/2020-1-23-const-%E7%94%A8%E6%B3%95/">2020-1-23-&#39;const&#39;用法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/23/2020-1-23-const-%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-01-23T14:21:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关键词’const’"><a href="#关键词’const’" class="headerlink" title="关键词’const’"></a>关键词’const’</h1>
+        
+          <a class="article-more-a" href="/2020/01/23/2020-1-23-const-%E7%94%A8%E6%B3%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++   语法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/23/2020-1-23-const-%E7%94%A8%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-1-23-引用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/23/2020-1-23-%E5%BC%95%E7%94%A8/">2020-1-23-引用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/23/2020-1-23-%E5%BC%95%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-01-23T13:47:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引用-1-23"><a href="#引用-1-23" class="headerlink" title="引用(1/23)"></a>引用(1/23)</h1><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3>
+        
+          <a class="article-more-a" href="/2020/01/23/2020-1-23-%E5%BC%95%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C++  语法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/23/2020-1-23-%E5%BC%95%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2020-1-19-可变数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/19/2020-1-19-%E5%8F%AF%E5%8F%98%E6%95%B0%E7%BB%84/">2020-1-19 可变数组 对比 1-15</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/19/2020-1-19-%E5%8F%AF%E5%8F%98%E6%95%B0%E7%BB%84/" class="archive-article-date">
+  	<time datetime="2020-01-19T08:42:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数列表"><a href="#函数列表" class="headerlink" title="函数列表"></a>函数列表</h3>
+        
+          <a class="article-more-a" href="/2020/01/19/2020-1-19-%E5%8F%AF%E5%8F%98%E6%95%B0%E7%BB%84/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C ,zju</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/19/2020-1-19-%E5%8F%AF%E5%8F%98%E6%95%B0%E7%BB%84/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -771,6 +1066,46 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">C++  语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++   语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C ,zju</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C++  数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C 变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ 枚举</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++ 类 对象 构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C char* char []</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ 输入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++ string vector string初始化 string赋值</a>
               </li>
             
             <div class="clearfix"></div>
