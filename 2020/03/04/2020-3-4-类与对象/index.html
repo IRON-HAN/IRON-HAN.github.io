@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>2020-3-4-类与对象 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参数名和成员名的命名: 或者在成员名之后加上后缀_12345class Stock&amp;#123;private:    string company_;    long shares_;&amp;#125;;">
+  <meta name="description" content="URL: https:&#x2F;&#x2F;iron-han.github.io&#x2F;参数名和成员名的命名: 或者在成员名之后加上后缀_12345class Stock&amp;#123;private:    string company_;    long shares_;&amp;#125;;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2020-3-4-类与对象">
 <meta property="og:url" content="http://yoursite.com/2020/03/04/2020-3-4-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="参数名和成员名的命名: 或者在成员名之后加上后缀_12345class Stock&amp;#123;private:    string company_;    long shares_;&amp;#125;;">
+<meta property="og:description" content="URL: https:&#x2F;&#x2F;iron-han.github.io&#x2F;参数名和成员名的命名: 或者在成员名之后加上后缀_12345class Stock&amp;#123;private:    string company_;    long shares_;&amp;#125;;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-04T06:17:36.000Z">
-<meta property="article:modified_time" content="2020-03-04T07:45:08.748Z">
+<meta property="article:modified_time" content="2020-04-03T14:29:14.817Z">
 <meta property="article:author" content="潘 承研">
 <meta property="article:tag" content="C++ class">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参数名和成员名的命名"><a href="#参数名和成员名的命名" class="headerlink" title="参数名和成员名的命名:"></a>参数名和成员名的命名:</h3><ul>
+        <ul>
+<li>URL: <a href="https://iron-han.github.io/" target="_blank" rel="noopener">https://iron-han.github.io/</a><h3 id="参数名和成员名的命名"><a href="#参数名和成员名的命名" class="headerlink" title="参数名和成员名的命名:"></a>参数名和成员名的命名:</h3></li>
 <li>或者在成员名之后加上后缀_<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Stock&#123;</span><br><span class="line">private:</span><br><span class="line">    string company_;</span><br><span class="line">    long shares_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="构造函数-调用"><a href="#构造函数-调用" class="headerlink" title="构造函数(调用):"></a>构造函数(调用):</h3></li>
@@ -184,8 +185,8 @@
 <li>隐式调用:<br> Stock garment(“A”,50,2.5);<br> Stock garment{“A”,50,2.5};//C++11</li>
 <li>显式调用:<br> Stock garment=Stock(“A”,50,2.5);<br> Stock garment={“A”,50,2.5};//C++11</li>
 <li>new一个对象:<br> Stock *pstock=new Stock(“A”,50,2.5);<br> Stock *pstock=new Stock{“A”,50,2.5};//C++11</li>
-</ol>
-<h2 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数:"></a>默认构造函数:</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h3><ol>
+<li>另一种更形式的调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    int i;</span><br><span class="line">public:</span><br><span class="line">    A() &#123; &#125;</span><br><span class="line">    A(int i) &#123; &#125;</span><br><span class="line">    A(const A &amp;a) &#123; &#125;</span><br><span class="line">    ~A() &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A f(A x)</span><br><span class="line">&#123;</span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    A h1;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 注意: 等价于 A h2(10);</span><br><span class="line">    A h2 &#x3D; 10;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 注意: 等价于 A h3(h2);</span><br><span class="line">    A h3 &#x3D; h2;</span><br><span class="line"></span><br><span class="line">    A h4 &#x3D; f(h1);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数:"></a>默认构造函数:</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h3></li>
 <li>当且仅当没有定义<strong>任何构造函数</strong>时,编译器提供默认的构造函数</li>
 <li>结论: 写了构造函数–&gt;必写默认构造函数</li>
 <li>默认构造函数推荐: 给出参数列表并提供默认值<br> Stock(const string &amp; co =”0”, int n = 0);</li>
@@ -312,6 +313,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/04/02/2020-4-2-STL%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2020-4-2-STL序列式容器的使用1
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/05/2020-2-5-%E7%95%AA%E5%A4%96-vscode%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-older" class="article-nav-link-wrap">
@@ -502,6 +512,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">C++ class</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vector list deque STL</a>
               </li>
             
             <div class="clearfix"></div>
