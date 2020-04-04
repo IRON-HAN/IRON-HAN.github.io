@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: C 变量 | Hexo</title>
+  <title>变量-初始化-声明-定义 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/C-%E5%8F%98%E9%87%8F/index.html">
+  <meta name="description" content="Initialize1.初始化的两种形式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变量-初始化-声明-定义">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/%E5%8F%98%E9%87%8F-%E5%88%9D%E5%A7%8B%E5%8C%96-%E5%A3%B0%E6%98%8E-%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Initialize1.初始化的两种形式">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-04T07:11:51.000Z">
+<meta property="article:modified_time" content="2020-04-04T07:56:11.692Z">
 <meta property="article:author" content="潘 承研">
+<meta property="article:tag" content="C++Pimer Varible Initialize Declearation Definition">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,60 +155,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-变量-初始化-声明-定义" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/24/%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="archive-article-date">
-  	<time datetime="2020-01-24T07:42:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>20-01-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/24/%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/">2020-1-24-变量的本质</a>
+    <h1 class="article-title" itemprop="name">
+      变量-初始化-声明-定义
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/04/%E5%8F%98%E9%87%8F-%E5%88%9D%E5%A7%8B%E5%8C%96-%E5%A3%B0%E6%98%8E-%E5%AE%9A%E4%B9%89/" class="archive-article-date">
+  	<time datetime="2020-04-04T07:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>20-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Initialize"><a href="#Initialize" class="headerlink" title="Initialize"></a>Initialize</h2><h3 id="1-初始化的两种形式"><a href="#1-初始化的两种形式" class="headerlink" title="1.初始化的两种形式"></a>1.初始化的两种形式</h3><a id="more"></a>
+<ol>
+<li>复制初始化（ copy-initialization ) </li>
+<li>直接初始化 ( direct-initialization )</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int val(1024);&#x2F;&#x2F;直接初始化</span><br><span class="line">int val&#x3D;1024;&#x2F;&#x2F;复制初始化</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>!: 初始化!=赋值: </li>
+<li>初始化-&gt;<strong>创建变量</strong>并给它赋<strong>初始值</strong>(只有一次)  </li>
+<li>赋值-&gt;<strong>擦除</strong>对象的当前值并用<strong>新值代替</strong>。</li>
+</ul>
+<h2 id="Declearation-amp-Definition"><a href="#Declearation-amp-Definition" class="headerlink" title="Declearation &amp; Definition"></a>Declearation &amp; Definition</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h3><ol>
+<li><p>定义: 为变量<strong>分配存储空间</strong>，还可以为变量指定<strong>初始值</strong>。(只有一次)</p>
+</li>
+<li><p>声明: 向程序表明变量的<strong>类型和名字</strong>。<br> <strong>定义也是声明</strong>：当定义变量时我们声明了它的类型和名字。<br> 使用 extern 关键字声明变量名而不定义它。</p>
+</li>
+<li><p>extern: extern 声明不是定义，也不分配存储空间。事实上，它只是说明变量定义在程序的其他地方。程序中变量可以声明多次，但只能定义一次。</p>
+<h3 id="examples"><a href="#examples" class="headerlink" title="examples:"></a>examples:</h3></li>
+</ol>
+<ul>
+<li><p>EG1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extern int i; &#x2F;&#x2F; declear but not define</span><br><span class="line">int i;  &#x2F;&#x2F; declear &amp; define</span><br><span class="line">extern double pi &#x3D; 3.1416; &#x2F;&#x2F; declear &amp; define</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EG2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extern double pi &#x3D; 3.1416； &#x2F;&#x2F; definition </span><br><span class="line">double pi;&#x2F;&#x2F; error: redefinition of pi</span><br><span class="line">extern double pi; &#x2F;&#x2F; ok: declaration not definition</span><br><span class="line">extern double pi &#x3D; 3.1416; &#x2F;&#x2F; error: redefinition of pi</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="SUM-UP"><a href="#SUM-UP" class="headerlink" title="SUM UP"></a>SUM UP</h2><ol>
+<li>使用直接初始化 ( direct-initialization )</li>
+<li>Declearation Definition<ol>
+<li>int i –&gt; declear &amp; define &amp; uninitialized(意味着后面不能有define)</li>
+<li>extern int i –&gt; declear but not define</li>
+<li>extern int i = 0 –&gt; declear &amp; define &amp; initialized(意味着后面不能有define)</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C 变量</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++Pimer Varible Initialize Declearation Definition</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/04/%E5%8F%98%E9%87%8F-%E5%88%9D%E5%A7%8B%E5%8C%96-%E5%A3%B0%E6%98%8E-%E5%AE%9A%E4%B9%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/04/Cpp-Primer-String/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Cpp_Primer-String
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/04/C-Keyword-Static/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++_Keyword_Static</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -226,9 +384,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: C 变量 | Hexo</title>
+  <title>Cpp-Primer-Vector | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/C-%E5%8F%98%E9%87%8F/index.html">
+  <meta name="description" content="说明:   vector不是一种数据类型，而只是一个类模板，可用来定义任意多种数据类型。 vector 类型的每一种都指定了其保存元素的类型。 vector 和 vector都是数据类型 vector : 存放string类型的容器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cpp-Primer-Vector">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/Cpp-Primer-Vector/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="说明:   vector不是一种数据类型，而只是一个类模板，可用来定义任意多种数据类型。 vector 类型的每一种都指定了其保存元素的类型。 vector 和 vector都是数据类型 vector : 存放string类型的容器">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-04T09:34:18.000Z">
+<meta property="article:modified_time" content="2020-04-04T10:38:27.072Z">
 <meta property="article:author" content="潘 承研">
+<meta property="article:tag" content="C++Primer Vector">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,60 +155,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Cpp-Primer-Vector" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/24/%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="archive-article-date">
-  	<time datetime="2020-01-24T07:42:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>20-01-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/24/%E5%8F%98%E9%87%8F%E7%9A%84%E6%9C%AC%E8%B4%A8/">2020-1-24-变量的本质</a>
+    <h1 class="article-title" itemprop="name">
+      Cpp-Primer-Vector
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/04/Cpp-Primer-Vector/" class="archive-article-date">
+  	<time datetime="2020-04-04T09:34:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>20-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>说明:</li>
+</ol>
+<ul>
+<li>vector不是一种数据类型，而只是一个类模板，可用来定义任意多种数据类型。</li>
+<li>vector 类型的每一种都指定了其保存元素的类型。</li>
+<li>vector<int> 和 vector<string>都是数据类型</li>
+<li>vector<string> : 存放string类型的容器</li>
+</ul>
+<a id="more"></a>
+
+<ol start="2">
+<li><p>vector 对象的定义和初始化</p>
+<ol>
+<li><p>几种初始化 vector 对象的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;T&gt; v1;</span><br><span class="line">vector&lt;T&gt; v2(v1);</span><br><span class="line">vector&lt;T&gt; v3(n, i); &#x2F;&#x2F; 包含n个值为i的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>值初始化</p>
+<ol>
+<li>如果 vector 保存内置类型（如 int 类型）的元素，那么标准库将用 0 值创建元素初始化式:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; vec(10); &#x2F;&#x2F;10个元素都为0</span><br></pre></td></tr></table></figure></li>
+<li>如果 vector 保存的是含有构造函数的类类型（如 string ) 的元素，标准库将用该类型的默认构造函数创建元素初始化式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; vec(10); &#x2F;&#x2F;10个元素都是空字符串</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>vector对象的操作</p>
+<ol>
+<li>vector对象的size: 使用 siZe_type 类型时，必须指出该类型是在哪里定义的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt;::size_type  &#x2F;&#x2F;OK</span><br><span class="line">vector::size_type  &#x2F;&#x2F;ERROR</span><br></pre></td></tr></table></figure></li>
+<li>向vector中添加元素: push_back()函数<br>EG1:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string word;</span><br><span class="line">vector&lt;string&gt; text;</span><br><span class="line">while(cin &gt;&gt; word)</span><br><span class="line">&#123;</span><br><span class="line">    text.push_back(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+EG2:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (vector&lt;int&gt;::size_type ix &#x3D; 0; ix !&#x3D; 10; ++ ix)</span><br><span class="line">    ivec.push_back(ix);</span><br></pre></td></tr></table></figure></li>
+<li>vector的遍历操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(vector&lt;int&gt;::size_type ix &#x3D; 0; ix !&#x3D; ivec.size(); ++ix)</span><br><span class="line">    ivec[ix] &#x3D; 0;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>迭代器</p>
+<ol>
+<li>定义: vector<int>::iterator iter;</li>
+<li>begin: 返回一个指向第一个元素的迭代器 | end: 返回一个指向末端元素的下一个的迭代器(实际上不指向任何元素) | 当vector为空时 begin = end</li>
+<li>迭代器解引用访问: *iter = 0;</li>
+<li>用迭代器置0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (vector&lt;int&gt;::iterator iter &#x3D; ivec.begin();</span><br><span class="line">iter !&#x3D; ivec.end(); ++iter)</span><br><span class="line">    *iter &#x3D; 0;</span><br></pre></td></tr></table></figure></li>
+<li>const_iterator –&gt; const int * p;<br>无法通过解引用修改迭代器指向的元素<br>但是仍可以通过自增运算遍历每一元素</li>
+<li>区分: const vector<T>::iterator &amp; vector<T>::const_iterator </li>
+<li>迭代器的算术操作<ol>
+<li>iter + - n (n是vector的size_type或 difference_type)</li>
+<li>iter1 - iter2 (类型为difference_type)</li>
+</ol>
+</li>
+<li>指向中间元素的迭代器: vector<int>::iterator mid=<br>vi.begin() + vi.size()/2;</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">C 变量</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++Primer Vector</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/04/Cpp-Primer-Vector/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/04/Cpp-Primer-String/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cpp_Primer-String</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -226,9 +389,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
